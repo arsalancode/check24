@@ -14,12 +14,12 @@ class ProductUiModel(product: Product, private val onClick: (() -> Unit)?) :
         Log.i("RepoUiModel", product.toString())
     }
 
-    val ownerAvatarUrl = MutableLiveData<String>().apply { postValue(product.imageURL) }
-    val ownerName = MutableLiveData<String>().apply { postValue(product.name) }
-    val repoName = MutableLiveData<String>().apply { postValue(product.name) }
-    val repoTitle = MutableLiveData<String>().apply { postValue(product.description) }
-    val repoDesc = MutableLiveData<String>().apply { postValue(product.longDescription) }
-    val repoUrl = MutableLiveData<String>().apply { postValue(product.price.value.toString()) }
+    val imageUrl = MutableLiveData<String>().apply { postValue(product.imageURL) }
+    val name = MutableLiveData<String>().apply { postValue(product.name) }
+    val date = MutableLiveData<String>().apply { postValue(product.releaseDate.toString()) }
+    val shortDesc = MutableLiveData<String>().apply { postValue(product.description) }
+    val rating = MutableLiveData<String>().apply { postValue(product.rating.toString()) }
+    val price = MutableLiveData<String>().apply { postValue(product.price.value.toString()) }
 
     fun onClick(clickedView: View) {
         onClick?.invoke()

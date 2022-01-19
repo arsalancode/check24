@@ -74,6 +74,7 @@ class HomeFragment : BaseFragment() {
             linearLayoutManager.onRestoreInstanceState(recyclerRepoState)
         })
 
+        vm.searchRepos("newText")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

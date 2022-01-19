@@ -33,7 +33,7 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profilePic"
-                    imageUrl="@{viewModel.ownerAvatarUrl}"
+                    imageUrl="@{viewModel.imageUrl}"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -42,13 +42,13 @@
                     tools:srcCompat="@drawable/ic_github_logo" />
 
                 <TextView
-                    android:id="@+id/tOwnerName"
+                    android:id="@+id/tName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{viewModel.ownerName}"
+                    android:text="@{viewModel.name}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
@@ -57,23 +57,23 @@
                     tools:text="Testing Text" />
 
                 <TextView
-                    android:id="@+id/tRepoName"
+                    android:id="@+id/tDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@{viewModel.repoName}"
+                    android:text="@{viewModel.date}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintLeft_toRightOf="@id/profilePic"
-                    app:layout_constraintTop_toBottomOf="@id/tOwnerName"
+                    app:layout_constraintTop_toBottomOf="@id/tName"
                     tools:text="Testing Text" />
 
 
                 <TextView
-                    android:id="@+id/tRepoTitle"
+                    android:id="@+id/tShortDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -81,21 +81,21 @@
                     android:autoLink="web"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@{viewModel.repoTitle}"
+                    android:text="@{viewModel.shortDesc}"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintLeft_toRightOf="@id/profilePic"
-                    app:layout_constraintTop_toBottomOf="@id/tRepoName"
+                    app:layout_constraintTop_toBottomOf="@id/tDate"
                     tools:text="Testing Text" />
 
                 <TextView
-                    android:id="@+id/tRepoUrl"
+                    android:id="@+id/tPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@{viewModel.repoUrl}"
+                    android:text="@{viewModel.price}"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintLeft_toLeftOf="@id/profilePic"
@@ -103,17 +103,17 @@
                     tools:text="https://github.com" />
 
                 <TextView
-                    android:id="@+id/tRepoDesc"
+                    android:id="@+id/tRating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:text="@{viewModel.repoDesc}"
+                    android:text="@{viewModel.rating}"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintLeft_toLeftOf="@id/profilePic"
-                    app:layout_constraintTop_toBottomOf="@id/tRepoUrl"
+                    app:layout_constraintTop_toBottomOf="@id/tPrice"
                     tools:text="@string/dummy_desc_text" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

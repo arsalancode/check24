@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">Github Repos</string>
-    <string name="search_title">Search repositories</string>
+    <!-- TODO: Translate in German -->
 
-    <string name="message_welcome">Welcome to GitHub Search.\n Search your favorite repo</string>
-    <string name="message_empty_result">Search result is empty</string>
+    <string name="app_name">Check24 Shapes</string>
+    <string name="search_title">Check24 Shape Comparison</string>
+
+    <string name="message_welcome">Welcome to Check24 Products App</string>
+    <string name="message_empty_result">Filter results are empty</string>
     <string name="message_error">Oops! Something went wrong.\nPlease try again</string>
     <string name="search_query_hint">Type repo name</string>
 

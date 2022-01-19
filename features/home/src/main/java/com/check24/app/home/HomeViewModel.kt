@@ -32,8 +32,8 @@ class HomeViewModel @Inject constructor(
     var loadMoreFlag = false
     val uiStates = MutableLiveData(UiStates.WELCOME)
 
-    lateinit var header: Header
-    lateinit var filters: List<String>
+    var header = MutableLiveData<Header>()
+    var filters: List<String> = listOf()
     var repoModelList : List<Product>
     val repoUiModelList = MutableLiveData<List<ProductUiModel>>()
     var query = MutableLiveData<QueryModel>()
@@ -46,6 +46,9 @@ class HomeViewModel @Inject constructor(
         .distinctUntilChanged()
 
     init {
+        header = MutableLiveData()
+//        header.postValue(Header("", ""))
+
         repoModelList = mutableListOf()
         repoUiModelList.postValue(listOf())
 
@@ -100,6 +103,7 @@ class HomeViewModel @Inject constructor(
 //                    repoModelList = repoModelList.plus(event.data.items)
 //                else
 
+                header.postValue(event.data.header)
                 repoModelList = event.data.products
 
                 val uiModelList = repoModelList.map {

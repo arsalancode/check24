@@ -29,6 +29,41 @@
         android:paddingRight="@dimen/_10sdp">
 
         <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@{viewModel.header.headerTitle}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            android:visibility="@{(viewModel.uiStates == UiState.SHOW_DATA) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/headerDesc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Check24 Shape Compararison"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/headerDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{viewModel.header.headerDescription}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="@{(viewModel.uiStates == UiState.SHOW_DATA) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/recyclerRepos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerTitle"
+            tools:text="List of geometric products"
+            tools:visibility="visible" />
+
+        <TextView
             android:id="@+id/welcomeMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,14 +100,14 @@
             items="@{viewModel.repoUiModelList}"
             lifecycleOwner="@{lfo}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:visibility="@{(viewModel.uiStates == UiState.SHOW_DATA || viewModel.uiStates == UiState.LOAD_MORE) ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/loadingMoreAnim"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerDesc"
             tools:listitem="@layout/repo_row"
             tools:visibility="visible" />
 
