@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.feliperrm.utils.getViewModel
 import com.check24.app.core.FullScreenDialogFragment
-import com.github.repos.networking.R
-import com.github.repos.networking.databinding.FragmentNoConnectionBinding
+import com.check24.app.networking.R
+import com.check24.app.networking.databinding.FragmentNoConnectionBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_no_connection.*
 import javax.inject.Inject

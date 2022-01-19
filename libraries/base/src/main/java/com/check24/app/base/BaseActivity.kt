@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import com.check24.app.networking.ui.NoConnectionFragment
-//import com.github.repos.memory.UserMemoryProvider
 import com.check24.app.navigation.result.Result
 import com.check24.app.networking.domain.InternetHelper
 import javax.inject.Inject

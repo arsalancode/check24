@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import com.check24.app.base.BaseActivity
 import com.check24.app.core.utils.hideSystemUI
 import com.check24.app.navigation.AppNavigation
-import com.github.repos.splash.databinding.ActivitySplashBinding
+import com.check24.app.splash.databinding.ActivitySplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

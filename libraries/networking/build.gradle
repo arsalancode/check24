@@ -28,13 +28,13 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField "String", "GITHUB_AUTH_TOKEN", properties.getProperty('GithubAuthToken')
-            buildConfigField "String", "GITHUB_LIVE_HOST", properties.getProperty('GithubLiveHost')
+            buildConfigField "String", "AUTH_TOKEN", properties.getProperty('AuthToken')
+            buildConfigField "String", "LIVE_HOST", properties.getProperty('TestHost')
         }
 
         debug {
-            buildConfigField "String", "GITHUB_AUTH_TOKEN", properties.getProperty('GithubAuthToken')
-            buildConfigField "String", "GITHUB_LIVE_HOST", properties.getProperty('GithubLiveHost')
+            buildConfigField "String", "AUTH_TOKEN", properties.getProperty('AuthToken')
+            buildConfigField "String", "LIVE_HOST", properties.getProperty('TestHost')
         }
     }
     dataBinding {

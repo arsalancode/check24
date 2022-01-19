@@ -1,7 +1,6 @@
 package com.check24.app.networking.provider
 
-import android.content.Context
-import com.github.repos.networking.BuildConfig
+import com.check24.app.networking.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,9 +11,9 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitBuilder {
 
-    val githubInstance by lazy {
+    val check24Instance by lazy {
         provideRetrofit(
-            BuildConfig.GITHUB_LIVE_HOST
+            BuildConfig.LIVE_HOST
         )
     }
 

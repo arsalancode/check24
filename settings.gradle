@@ -1,4 +1,4 @@
-rootProject.name = "Github Repos"
+rootProject.name = "Check24 Products"
 include ':app'
 include ':features:home'
 include ':features:splash'

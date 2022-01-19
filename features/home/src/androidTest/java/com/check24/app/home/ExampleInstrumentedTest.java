@@ -1,4 +1,4 @@
-package com.github.repos.home;
+package com.check24.app.home;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.github.repos", appContext.getPackageName());
+        assertEquals("com.check24.app", appContext.getPackageName());
     }
 }

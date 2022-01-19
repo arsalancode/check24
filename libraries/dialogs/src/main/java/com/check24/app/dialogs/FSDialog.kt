@@ -14,7 +14,7 @@ import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import com.feliperrm.utils.getViewModel
 import com.check24.app.core.FullScreenDialogFragment
-import com.github.repos.dialogs.databinding.DialogFragmentBinding
+import com.check24.app.dialogs.databinding.DialogFragmentBinding
 import kotlinx.android.synthetic.main.dialog_fragment.*
 
 

@@ -1,4 +1,4 @@
-package com.github.repos.home
+package com.check24.app.home
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -37,7 +37,7 @@ class SearchRepositoryTest {
     fun initialise(){
         connectivityManager = getApplicationContext<Context>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         internetHelper = InternetHelper(connectivityManager)
-        retrofitInstance = RetrofitBuilder().githubInstance.create(RepoService::class.java)
+        retrofitInstance = RetrofitBuilder().check24Instance.create(RepoService::class.java)
         searchRepo = SearchRepositoryImpl(internetHelper, retrofitInstance)
     }
 

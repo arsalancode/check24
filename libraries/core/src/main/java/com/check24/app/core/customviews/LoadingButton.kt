@@ -9,7 +9,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.github.repos.core.R
+import com.check24.app.core.R
 
 class LoadingButton : AppCompatButton {
     constructor(context: Context) : super(context)

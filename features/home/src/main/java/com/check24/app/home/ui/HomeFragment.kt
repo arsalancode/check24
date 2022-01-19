@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.check24.app.base.BaseFragment
 import com.check24.app.home.HomeViewModel
-import com.github.repos.home.R
-import com.github.repos.home.databinding.HomeFragmentBinding
+import com.check24.app.home.R
+import com.check24.app.home.databinding.HomeFragmentBinding
 import com.check24.app.home.model.UiStates
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*

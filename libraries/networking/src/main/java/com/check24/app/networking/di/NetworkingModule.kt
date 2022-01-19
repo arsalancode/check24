@@ -1,14 +1,11 @@
 package com.check24.app.networking.di
 
-import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
-import com.github.repos.networking.BuildConfig
+import com.check24.app.networking.BuildConfig
 import com.check24.app.networking.domain.InternetHelper
 import com.check24.app.networking.networking.repo.RepoService
-import com.check24.app.networking.networking.repo.SearchRepository
 import com.check24.app.networking.networking.repo.SearchRepositoryImpl
-import com.check24.app.networking.provider.RetrofitBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -18,10 +15,8 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 @Module
@@ -44,7 +39,7 @@ object NetworkingModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.GITHUB_LIVE_HOST)
+            .baseUrl(BuildConfig.LIVE_HOST)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)

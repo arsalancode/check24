@@ -3,7 +3,7 @@ package com.check24.app.home.uimodels
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
-import com.github.repos.home.R
+import com.check24.app.home.R
 import com.check24.app.core.lists.DataBoundModel
 import com.check24.app.networking.networking.repo.model.RepoModel
 

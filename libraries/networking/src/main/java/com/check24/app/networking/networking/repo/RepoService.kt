@@ -13,9 +13,12 @@ interface RepoService {
 
     /**
      *
+     * http://app.check24.de/products-test.json
+     *
      *  Method to query repos using Github Search API
      *  More details on: https://docs.github.com/en/rest/reference/search#search-repositories
      *  Example API call: https://api.github.com/search/repositories?q=a&page=1&per_page=30
+     *
      */
 
     @GET(SEARCH_REPOS_PATH)

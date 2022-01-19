@@ -11,7 +11,7 @@
             android:name=".ui.HomeActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="action.github.home.open" />
+                <action android:name="action.check24.home.open" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

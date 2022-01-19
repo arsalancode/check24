@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.github.repos.core.BR
+import com.check24.app.core.BR
 
 class DataBoundRecyclerAdapter(
     val items: List<DataBoundModel>,
