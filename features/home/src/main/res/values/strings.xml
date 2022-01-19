@@ -20,5 +20,7 @@
     <string name="item_available">Verfugbar</string>
     <string name="item_favorite">Vorgemerkt</string>
 
+    <string name="footer_home">\@ 2016 Check24</string>
+
 
 </resources>

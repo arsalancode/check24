@@ -3,13 +3,14 @@ package com.check24.app.home
 import android.util.Log
 import androidx.lifecycle.*
 import com.check24.app.base.NoInternetBaseViewModel
+import com.check24.app.core.lists.DataBoundModel
 import com.check24.app.core.utils.flow.Event
 import com.check24.app.core.utils.flow.asFlow
 import com.check24.app.core.utils.flow.loadingEventFlow
 import com.check24.app.core.utils.toDate
 import com.check24.app.core.utils.toPrice
-import com.check24.app.home.model.QueryModel
 import com.check24.app.home.model.UiStates
+import com.check24.app.home.uimodels.FooterUiModel
 import com.check24.app.home.uimodels.ProductUiModel
 import com.check24.app.networking.networking.repo.SearchRepository
 import com.check24.app.networking.networking.repo.model.Header
@@ -42,15 +43,7 @@ class HomeViewModel @Inject constructor(
     var header = MutableLiveData<Header>()
     var filters: List<String> = listOf()
     var repoModelList: List<Product>
-    val repoUiModelList = MutableLiveData<List<ProductUiModel>>()
-    var query = MutableLiveData<QueryModel>()
-
-//    private val queryModelFlow = query.asFlow()
-//        .debounce(500)
-//        .filter {
-//            it.query.trim().isEmpty().not()
-//        }
-//        .distinctUntilChanged()
+    val repoUiModelList = MutableLiveData<List<DataBoundModel>>()
 
     init {
         repoModelList = mutableListOf()
@@ -58,19 +51,6 @@ class HomeViewModel @Inject constructor(
 
         fetchProducts()
     }
-
-//    fun searchRepos(newQuery: String) {
-//        currentPage = 1
-//        loadMoreFlag = false
-//        query.value = QueryModel(newQuery, currentPage)
-//    }
-//
-//    fun loadMore() {
-//        Log.i(TAG, "LoadMore")
-//        currentPage++
-//        loadMoreFlag = true
-//        query.value = QueryModel(query.value?.query!!, currentPage)
-//    }
 
     fun updateList( item: Int ){
         val list = when (item){
@@ -89,7 +69,7 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-        val uiModelList = list.map {
+        val uiModelList : MutableList<DataBoundModel> = list.map {
             ProductUiModel(
                 it,
                 if (it.available) R.layout.product_row else R.layout.product_row_inverse
@@ -101,7 +81,10 @@ class HomeViewModel @Inject constructor(
                 // now move to detailed fragment
                 onClick.postValue(true)
             }
-        }
+        }.toMutableList()
+
+        uiModelList.add(FooterUiModel(null))
+
         repoUiModelList.postValue(uiModelList)
 
     }
@@ -111,19 +94,6 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-//            asFlow {
-//                loadingEventFlow {
-//                    searchRepository.fetchProducts()
-//                }
-//            }
-//            .flatMapLatest {
-//                loadingEventFlow {
-//                    searchRepository.fetchProducts(it.query, it.pageNo)
-//                }
-//            }.collect {
-//                handleSearchResultEvent(it)
-//            }
-
             asFlow {
                 loadingEventFlow {
                     searchRepository.fetchProducts()
@@ -131,14 +101,10 @@ class HomeViewModel @Inject constructor(
             }
             .flatMapLatest {
                 it
-//                    loadingEventFlow {
-//                        searchRepository.fetchProducts()
-//                    }
             }
             .collect {
                     handleProductsResultEvent(it)
-                }
-
+            }
 
         }
     }
@@ -158,14 +124,10 @@ class HomeViewModel @Inject constructor(
             is Event.Data -> {
                 Log.i(TAG, "Event:Data")
 
-//                if (loadMoreFlag)
-//                    repoModelList = repoModelList.plus(event.data.items)
-//                else
-
                 header.postValue(event.data.header)
                 repoModelList = event.data.products
 
-                val uiModelList = repoModelList.map {
+                val uiModelList: MutableList<DataBoundModel> = repoModelList.map {
                     ProductUiModel(
                         it,
                         if (it.available) R.layout.product_row else R.layout.product_row_inverse
@@ -180,7 +142,9 @@ class HomeViewModel @Inject constructor(
                         // now move to detailed fragment
                         onClick.postValue(true)
                     }
-                }
+                }.toMutableList()
+
+                uiModelList.add(FooterUiModel(null))
                 repoUiModelList.postValue(uiModelList)
                 //selectedProduct = repoModelList[0]// dummy
 
