@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.view.*
 import android.widget.SearchView
+import androidx.activity.addCallback
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.check24.app.base.BaseFragment
@@ -29,7 +31,15 @@ class DetailFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+//        setHasOptionsMenu(true)
+
+        // This callback will only be called when MyFragment is at least Started.
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            // Handle the back button event
+            vm.onClick.value = false
+            findNavController().navigateUp()
+        }
+
     }
 
     override fun onCreateView(
@@ -51,15 +61,8 @@ class DetailFragment : BaseFragment() {
             }
         })
 
+
+
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.search_menu, menu)
-//        val search = menu.findItem(R.id.search)
-//        val searchView: SearchView = MenuItemCompat.getActionView(search) as SearchView
-//        setupSearchView(searchView)
-//    }
-
-
 
 }
