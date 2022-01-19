@@ -7,8 +7,10 @@ import com.check24.app.core.utils.flow.Event
 import com.check24.app.core.utils.flow.loadingEventFlow
 import com.check24.app.home.model.QueryModel
 import com.check24.app.home.model.UiStates
-import com.check24.app.home.uimodels.RepoUiModel
+import com.check24.app.home.uimodels.ProductUiModel
 import com.check24.app.networking.networking.repo.SearchRepository
+import com.check24.app.networking.networking.repo.model.Header
+import com.check24.app.networking.networking.repo.model.Product
 import com.check24.app.networking.networking.repo.model.RepoModel
 import com.check24.app.networking.networking.repo.model.SearchResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,8 +32,10 @@ class HomeViewModel @Inject constructor(
     var loadMoreFlag = false
     val uiStates = MutableLiveData(UiStates.WELCOME)
 
-    var repoModelList : List<RepoModel>
-    val repoUiModelList = MutableLiveData<List<RepoUiModel>>()
+    lateinit var header: Header
+    lateinit var filters: List<String>
+    var repoModelList : List<Product>
+    val repoUiModelList = MutableLiveData<List<ProductUiModel>>()
     var query = MutableLiveData<QueryModel>()
 
     private val queryModelFlow = query.asFlow()
@@ -77,7 +81,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun handleSearchResultEvent(event: Event<SearchResult>) {
+    private fun handleSearchResultEvent(event: Event<RepoModel>) {
 
         when(event) {
             is Event.Idle -> {
@@ -92,13 +96,14 @@ class HomeViewModel @Inject constructor(
             is Event.Data -> {
                 Log.i(TAG, "Event:Data")
 
-                if (loadMoreFlag)
-                    repoModelList = repoModelList.plus(event.data.items)
-                else
-                    repoModelList = event.data.items
+//                if (loadMoreFlag)
+//                    repoModelList = repoModelList.plus(event.data.items)
+//                else
+
+                repoModelList = event.data.products
 
                 val uiModelList = repoModelList.map {
-                    RepoUiModel(it, null)
+                    ProductUiModel(it, null)
                 }
                 repoUiModelList.postValue(uiModelList)
 

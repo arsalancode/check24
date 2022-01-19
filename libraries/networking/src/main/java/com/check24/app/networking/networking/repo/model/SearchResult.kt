@@ -14,7 +14,7 @@ data class SearchResult(
     val inComplete: Boolean,
 
     @SerializedName("items")
-    val items: List<RepoModel>
+    val items: List<Product>
 
 ) : Parcelable {
     override fun toString(): String {

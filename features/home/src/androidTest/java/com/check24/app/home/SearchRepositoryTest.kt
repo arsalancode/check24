@@ -7,7 +7,7 @@ import com.check24.app.networking.domain.InternetHelper
 import com.check24.app.networking.networking.repo.RepoService
 import com.check24.app.networking.networking.repo.SearchRepository
 import com.check24.app.networking.networking.repo.SearchRepositoryImpl
-import com.check24.app.networking.networking.repo.model.Owner
+import com.check24.app.networking.networking.repo.model.Header
 import com.check24.app.networking.networking.repo.model.RepoModel
 import com.check24.app.networking.provider.RetrofitBuilder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -66,7 +66,7 @@ class SearchRepositoryTest {
         for (i in 0..29) {
 
             val repo = RepoModel(
-                Owner(
+                Header(
                     ownerAvatar = "https://avatars.githubusercontent.com/u/3281689?v=4",
                     ownerName = "Code SkyBlue"
                 ),

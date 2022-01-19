@@ -14,7 +14,7 @@ data class SearchRepositoryImpl @Inject constructor (
 ) : SearchRepository {
 
     @FlowPreview
-    override suspend fun searchGitRepos(query: String, pageNo: Int): Flow<SearchResult> =
+    override suspend fun searchGitRepos(query: String, pageNo: Int): Flow<RepoModel> =
         internetHelper.executeCheckInternetStatus()
             .flatMapConcat { asFlow { service.searchRepos(query, pageNo) } }
             .map { it }
