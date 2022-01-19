@@ -38,7 +38,7 @@
                     imageUrl="@{viewModel.imageUrl}"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/circleImageView"
                     tools:srcCompat="@drawable/ic_github_logo" />
@@ -49,73 +49,49 @@
                     android:id="@+id/tName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{viewModel.name}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toRightOf="@id/profilePic"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@id/profilePic"
                     tools:text="Name" />
 
                 <TextView
-                    android:id="@+id/tDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:maxLines="1"
-                    android:text="@{viewModel.date}"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintBottom_toBottomOf="@id/tName"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tName"
-                    tools:text="31.12.2015" />
-
-                <TextView
                     android:id="@+id/tShortDesc"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginTop="3sp"
                     android:ellipsize="end"
+                    android:gravity="left"
                     android:maxLines="2"
                     android:text="@{viewModel.shortDesc}"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_12ssp"
-                    app:layout_constraintLeft_toRightOf="@id/profilePic"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/profilePic"
                     app:layout_constraintTop_toBottomOf="@id/tName"
                     tools:text="Testing Text" />
 
-                <TextView
-                    android:id="@+id/tPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="@{viewModel.price}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintLeft_toRightOf="@id/profilePic"
-                    app:layout_constraintTop_toBottomOf="@id/tShortDesc"
-                    tools:text="Preis: 39.99 Eur" />
-
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleSmall"
+                    style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:numStars="5"
                     android:progressTint="@color/yellow"
                     android:rating="@{viewModel.rating}"
-                    app:layout_constraintBottom_toBottomOf="@id/tPrice"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tPrice"
-                    tools:rating="3.5" />
+                    android:stepSize="0.5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tShortDesc"
+                    tools:rating="3.4" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

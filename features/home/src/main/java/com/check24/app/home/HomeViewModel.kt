@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
 
     var header = MutableLiveData<Header>()
     var filters: List<String> = listOf()
-    var repoModelList : List<Product>
+    var repoModelList: List<Product>
     val repoUiModelList = MutableLiveData<List<ProductUiModel>>()
     var query = MutableLiveData<QueryModel>()
 
@@ -55,13 +55,13 @@ class HomeViewModel @Inject constructor(
         fetchDataOnQueryChange()
     }
 
-    fun searchRepos( newQuery : String ){
+    fun searchRepos(newQuery: String) {
         currentPage = 1
         loadMoreFlag = false
         query.value = QueryModel(newQuery, currentPage)
     }
 
-    fun loadMore(){
+    fun loadMore() {
         Log.i(TAG, "LoadMore")
         currentPage++
         loadMoreFlag = true
@@ -86,7 +86,7 @@ class HomeViewModel @Inject constructor(
 
     private fun handleSearchResultEvent(event: Event<RepoModel>) {
 
-        when(event) {
+        when (event) {
             is Event.Idle -> {
                 Log.i(TAG, "Event:Idle")
             }
@@ -107,19 +107,23 @@ class HomeViewModel @Inject constructor(
                 repoModelList = event.data.products
 
                 val uiModelList = repoModelList.map {
-                    ProductUiModel(it, null)
+                    ProductUiModel(
+                        it,
+                        null,
+                        if (it.available) R.layout.product_row else R.layout.product_row_inverse
+                    )
                 }
                 repoUiModelList.postValue(uiModelList)
 
                 uiStates.value = if (uiModelList.isEmpty()) UiStates.NO_DATA
-                                    else UiStates.SHOW_DATA
+                else UiStates.SHOW_DATA
             }
 
             is Event.Error -> {
                 Log.e(TAG, "Event:Error")
                 uiStates.value = UiStates.ERROR
 
-                if ( event.error is HttpException ){
+                if (event.error is HttpException) {
                     Log.e(TAG, "Message: " + event.error.message)
 
                 } else if (!hasInternetConnection(event)) {

@@ -108,7 +108,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headerDesc"
-            tools:listitem="@layout/repo_row"
+            tools:listitem="@layout/product_row"
             tools:visibility="visible" />
 
         <com.airbnb.lottie.LottieAnimationView

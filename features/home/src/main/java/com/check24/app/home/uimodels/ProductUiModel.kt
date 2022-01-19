@@ -9,8 +9,8 @@ import com.check24.app.core.utils.toDate
 import com.check24.app.core.utils.toPrice
 import com.check24.app.networking.networking.repo.model.Product
 
-class ProductUiModel(product: Product, private val onClick: (() -> Unit)?) :
-    DataBoundModel(R.layout.repo_row) {
+class ProductUiModel(product: Product, private val onClick: (() -> Unit)?, layout: Int) :
+    DataBoundModel(layout) {
 
     init {
         Log.i("RepoUiModel", product.toString())

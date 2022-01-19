@@ -80,9 +80,13 @@ data class Product (
     @SerializedName("price")
     val price: Price,
 
-) : Parcelable {
+    @SerializedName("available")
+    val available: Boolean,
+
+
+    ) : Parcelable {
     override fun toString(): String {
-        return "Product(id=$id, name='$name', imageURL='$imageURL', releaseDate=$releaseDate, description='$description', longDescription='$longDescription', rating=$rating, price=$price)"
+        return "Product(id=$id, name='$name', imageURL='$imageURL', releaseDate=$releaseDate, description='$description', longDescription='$longDescription', rating=$rating, price=$price, available=$available)"
     }
 }
 
