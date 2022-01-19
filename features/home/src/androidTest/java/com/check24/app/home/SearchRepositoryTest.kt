@@ -54,33 +54,12 @@ class SearchRepositoryTest {
         mockWebServer.start()
         val expected = 30
 
-        searchRepo.fetchProducts("test", 1)
+        searchRepo.fetchProducts()
             .collect {
-            assertEquals(expected, it.items.size)
+            assertEquals(expected, it.products.size)
         }
     }
 
-
-    private fun getDummyRepos(): ArrayList<RepoModel> {
-        val repoList = ArrayList<RepoModel>()
-        for (i in 0..29) {
-
-            val repo = RepoModel(
-                Header(
-                    ownerAvatar = "https://avatars.githubusercontent.com/u/3281689?v=4",
-                    ownerName = "Code SkyBlue"
-                ),
-                repoName = "gohttpserver",
-                repoTitle ="gohttpserver",
-                repoDesc = "The best HTTP Static File Server, write with golang+vue",
-                repoUrl = "https://github.com/codeskyblue/gohttpserver"
-            )
-
-            repoList.add(repo)
-        }
-
-        return repoList
-    }
 
 
 }

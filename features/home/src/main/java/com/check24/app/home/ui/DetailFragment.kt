@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,7 @@ class DetailFragment : BaseFragment() {
     private val TAG = "DetailFragment"
 
     @ExperimentalCoroutinesApi
-    private val vm: HomeViewModel by viewModels()
+    private val vm: HomeViewModel by activityViewModels() //viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

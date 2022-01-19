@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,7 @@ class HomeFragment : BaseFragment() {
     private val TAG = "HomeFragment"
 
     @ExperimentalCoroutinesApi
-    private val vm: HomeViewModel by viewModels()
+    private val vm: HomeViewModel by activityViewModels() //viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

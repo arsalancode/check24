@@ -42,7 +42,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/circleImageView"
-                    tools:srcCompat="@drawable/ic_github_logo" />
+                    tools:srcCompat="@drawable/ic_logo" />
 
                 <!-- TODO: Change name color when favorite -->
 

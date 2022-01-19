@@ -144,6 +144,8 @@ class HomeViewModel @Inject constructor(
                     }
                 }.toMutableList()
 
+                Log.i(TAG, "Products size: ${uiModelList.size}")
+
                 uiModelList.add(FooterUiModel(null))
                 repoUiModelList.postValue(uiModelList)
                 //selectedProduct = repoModelList[0]// dummy
