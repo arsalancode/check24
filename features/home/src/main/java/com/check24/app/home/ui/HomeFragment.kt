@@ -2,6 +2,7 @@ package com.check24.app.home.ui
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuItemCompat
@@ -25,12 +26,6 @@ import java.net.SocketTimeoutException
 class HomeFragment : BaseFragment() {
     private val TAG = "HomeFragment"
 
-    private lateinit var linearLayoutManager: LinearLayoutManager
-    private val lastVisibleItemPosition: Int
-        get() = linearLayoutManager.findLastVisibleItemPosition()
-
-    private lateinit var recyclerRepoState: Parcelable
-
     @ExperimentalCoroutinesApi
     private val vm: HomeViewModel by viewModels()
 
@@ -52,27 +47,12 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerRepos.layoutManager = LinearLayoutManager(activity)
-        linearLayoutManager = recyclerRepos.layoutManager as LinearLayoutManager
-        recyclerRepoState = linearLayoutManager.onSaveInstanceState()!!
-
-        setRecyclerViewScrollListener()
 
         vm.noConnectionEvent.observe(viewLifecycleOwner, {
             if (it.first) {
                 noConnectionFragment(it.second is SocketTimeoutException)
                     .show(childFragmentManager, "")
             }
-        })
-
-        vm.uiStates.observe(viewLifecycleOwner, {
-
-            if (it == UiStates.LOAD_MORE)
-                recyclerRepoState = linearLayoutManager.onSaveInstanceState()!!
-
-        })
-
-        vm.repoUiModelList.observe(viewLifecycleOwner, {
-            linearLayoutManager.onRestoreInstanceState(recyclerRepoState)
         })
 
         vm.onClick.observe(viewLifecycleOwner, {
@@ -83,50 +63,36 @@ class HomeFragment : BaseFragment() {
             }
         })
 
-
-        vm.searchRepos("newText")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_menu, menu)
-        val search = menu.findItem(R.id.search)
-        val searchView: SearchView = MenuItemCompat.getActionView(search) as SearchView
-        setupSearchView(searchView)
+        inflater.inflate(R.menu.filter_menu, menu)
     }
 
-    private fun setRecyclerViewScrollListener() {
-        val scrollListener = object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val totalItemCount = recyclerView.layoutManager?.itemCount
-                if (totalItemCount == lastVisibleItemPosition + 1) {
-                    vm.loadMore()
-                }
-            }
-        }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        recyclerRepos.addOnScrollListener(scrollListener)
-    }
-
-    private fun setupSearchView(searchView: SearchView) {
-
-        searchView.queryHint = activity?.resources?.getString(R.string.search_query_hint)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-            override fun onQueryTextSubmit(query: String): Boolean {
-                searchView.clearFocus()
-                return false
+        return when(item.itemId){
+            R.id.all -> {
+                Log.i(TAG, "ALL")
+                vm.updateList(0)
+                true
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                vm.searchRepos(newText)
-                return false
+            R.id.available -> {
+                Log.i(TAG, "Available")
+                vm.updateList(1)
+                true
             }
-        })
 
-        searchView.setOnCloseListener {
-            vm.uiStates.postValue(UiStates.WELCOME)
-            false
+            R.id.favorite -> {
+                Log.i(TAG, "Favorite")
+                vm.updateList(2)
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
 
     }

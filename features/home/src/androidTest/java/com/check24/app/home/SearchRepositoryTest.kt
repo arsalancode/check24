@@ -54,7 +54,7 @@ class SearchRepositoryTest {
         mockWebServer.start()
         val expected = 30
 
-        searchRepo.searchGitRepos("test", 1)
+        searchRepo.fetchProducts("test", 1)
             .collect {
             assertEquals(expected, it.items.size)
         }

@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface SearchRepository {
 
     @FlowPreview
-    suspend fun searchGitRepos(query: String, pageNo: Int): Flow<RepoModel>
+    suspend fun fetchProducts(): Flow<RepoModel>
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.check24.app.base.NoInternetBaseViewModel
 import com.check24.app.core.utils.flow.Event
+import com.check24.app.core.utils.flow.asFlow
 import com.check24.app.core.utils.flow.loadingEventFlow
 import com.check24.app.core.utils.toDate
 import com.check24.app.core.utils.toPrice
@@ -44,50 +45,105 @@ class HomeViewModel @Inject constructor(
     val repoUiModelList = MutableLiveData<List<ProductUiModel>>()
     var query = MutableLiveData<QueryModel>()
 
-    private val queryModelFlow = query.asFlow()
-        .debounce(500)
-        .filter {
-            it.query.trim().isEmpty().not()
-        }
-        .distinctUntilChanged()
+//    private val queryModelFlow = query.asFlow()
+//        .debounce(500)
+//        .filter {
+//            it.query.trim().isEmpty().not()
+//        }
+//        .distinctUntilChanged()
 
     init {
         repoModelList = mutableListOf()
         repoUiModelList.postValue(listOf())
 
-        fetchDataOnQueryChange()
+        fetchProducts()
     }
 
-    fun searchRepos(newQuery: String) {
-        currentPage = 1
-        loadMoreFlag = false
-        query.value = QueryModel(newQuery, currentPage)
+//    fun searchRepos(newQuery: String) {
+//        currentPage = 1
+//        loadMoreFlag = false
+//        query.value = QueryModel(newQuery, currentPage)
+//    }
+//
+//    fun loadMore() {
+//        Log.i(TAG, "LoadMore")
+//        currentPage++
+//        loadMoreFlag = true
+//        query.value = QueryModel(query.value?.query!!, currentPage)
+//    }
+
+    fun updateList( item: Int ){
+        val list = when (item){
+            1 -> {
+                repoModelList.filter {
+                    it.available
+                }
+            }
+            2 -> {
+                repoModelList.filter {
+                    it.isFavorite
+                }
+            }
+            else -> {
+                repoModelList
+            }
+        }
+
+        val uiModelList = list.map {
+            ProductUiModel(
+                it,
+                if (it.available) R.layout.product_row else R.layout.product_row_inverse
+            ) {
+                // click listener
+                Log.i(TAG, "Selected Product: $it")
+                selectedProduct.value = it
+
+                // now move to detailed fragment
+                onClick.postValue(true)
+            }
+        }
+        repoUiModelList.postValue(uiModelList)
+
     }
 
-    fun loadMore() {
-        Log.i(TAG, "LoadMore")
-        currentPage++
-        loadMoreFlag = true
-        query.value = QueryModel(query.value?.query!!, currentPage)
-    }
 
-
-    private fun fetchDataOnQueryChange() {
+    private fun fetchProducts() {
 
         viewModelScope.launch {
 
-            queryModelFlow.flatMapLatest {
+//            asFlow {
+//                loadingEventFlow {
+//                    searchRepository.fetchProducts()
+//                }
+//            }
+//            .flatMapLatest {
+//                loadingEventFlow {
+//                    searchRepository.fetchProducts(it.query, it.pageNo)
+//                }
+//            }.collect {
+//                handleSearchResultEvent(it)
+//            }
+
+            asFlow {
                 loadingEventFlow {
-                    searchRepository.searchGitRepos(it.query, it.pageNo)
+                    searchRepository.fetchProducts()
                 }
-            }.collect {
-                handleSearchResultEvent(it)
             }
+            .flatMapLatest {
+                it
+//                    loadingEventFlow {
+//                        searchRepository.fetchProducts()
+//                    }
+            }
+            .collect {
+                    handleProductsResultEvent(it)
+                }
+
 
         }
     }
 
-    private fun handleSearchResultEvent(event: Event<RepoModel>) {
+    private fun handleProductsResultEvent(event: Event<RepoModel>) {
 
         when (event) {
             is Event.Idle -> {
@@ -181,6 +237,7 @@ class HomeViewModel @Inject constructor(
         "long desc",
         3.4F,
         Price(0F, "EUR"),
+        false,
         false
     )
 

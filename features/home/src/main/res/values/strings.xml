@@ -16,5 +16,9 @@
     <string name="vormerken">Vormerken</string>
     <string name="footer_text">Footer text...</string>
 
+    <string name="item_all">Alle</string>
+    <string name="item_available">Verfugbar</string>
+    <string name="item_favorite">Vorgemerkt</string>
+
 
 </resources>

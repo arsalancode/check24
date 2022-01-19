@@ -85,6 +85,7 @@ data class Product (
     @SerializedName("available")
     val available: Boolean,
 
+    var isFavorite: Boolean,
 
     ) : Parcelable {
     override fun toString(): String {
