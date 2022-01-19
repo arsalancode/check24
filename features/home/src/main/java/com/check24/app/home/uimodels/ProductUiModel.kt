@@ -5,6 +5,8 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.check24.app.home.R
 import com.check24.app.core.lists.DataBoundModel
+import com.check24.app.core.utils.toDate
+import com.check24.app.core.utils.toPrice
 import com.check24.app.networking.networking.repo.model.Product
 
 class ProductUiModel(product: Product, private val onClick: (() -> Unit)?) :
@@ -16,10 +18,10 @@ class ProductUiModel(product: Product, private val onClick: (() -> Unit)?) :
 
     val imageUrl = MutableLiveData<String>().apply { postValue(product.imageURL) }
     val name = MutableLiveData<String>().apply { postValue(product.name) }
-    val date = MutableLiveData<String>().apply { postValue(product.releaseDate.toString()) }
+    val date = MutableLiveData<String>().apply { postValue(product.releaseDate.toDate()) }
     val shortDesc = MutableLiveData<String>().apply { postValue(product.description) }
-    val rating = MutableLiveData<String>().apply { postValue(product.rating.toString()) }
-    val price = MutableLiveData<String>().apply { postValue(product.price.value.toString()) }
+    val rating = MutableLiveData<Float>().apply { postValue(product.rating) }
+    val price = MutableLiveData<String>().apply { postValue(product.price.value.toPrice(product.price.currency)) }
 
     fun onClick(clickedView: View) {
         onClick?.invoke()

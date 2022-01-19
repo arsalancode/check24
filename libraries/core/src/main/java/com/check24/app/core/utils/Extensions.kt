@@ -10,6 +10,19 @@ import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import java.text.SimpleDateFormat
+import java.util.*
+
+fun Float.toPrice(currency: String) : String {
+    return "Pries: $this $currency"
+}
+
+fun Long.toDate() : String {
+    val date = Date(this)
+    val format = SimpleDateFormat("dd.MM.yyyy")
+    return format.format(date)
+}
+
 
 fun Context.color(@ColorRes resId: Int) = ResourcesCompat.getColor(resources, resId, theme)
 fun Fragment.color(@ColorRes resId: Int) = context?.color(resId) ?: Color.TRANSPARENT

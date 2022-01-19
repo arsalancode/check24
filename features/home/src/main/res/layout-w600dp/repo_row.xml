@@ -102,19 +102,19 @@
                     app:layout_constraintTop_toBottomOf="@id/profilePic"
                     tools:text="https://github.com" />
 
-                <TextView
-                    android:id="@+id/tRating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    android:text="@{viewModel.rating}"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintLeft_toLeftOf="@id/profilePic"
-                    app:layout_constraintTop_toBottomOf="@id/tPrice"
-                    tools:text="@string/dummy_desc_text" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tRating"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/_5sdp"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:maxLines="3"-->
+<!--                    android:text="@{viewModel.rating}"-->
+<!--                    android:textColor="@color/grey"-->
+<!--                    android:textSize="@dimen/_12ssp"-->
+<!--                    app:layout_constraintLeft_toLeftOf="@id/profilePic"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tPrice"-->
+<!--                    tools:text="@string/dummy_desc_text" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
