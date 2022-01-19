@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="lfo"
+            type="androidx.lifecycle.LifecycleOwner" />
+
+        <variable
+            name="viewModel"
+            type="com.check24.app.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profilePic"
+            imageUrl="@{viewModel.selectedProduct.imageURL}"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            tools:srcCompat="@drawable/ic_github_logo" />
+
+        <!-- TODO: Change name color when favorite -->
+
+        <TextView
+            android:id="@+id/tName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.selectedProduct.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/profilePic"
+            app:layout_constraintTop_toTopOf="@id/profilePic"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/tPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{viewModel.getPrice()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toRightOf="@id/profilePic"
+            app:layout_constraintTop_toBottomOf="@id/tName"
+            tools:text="Preis: 39.99 Eur" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:numStars="5"
+            android:progressTint="@color/yellow"
+            android:rating="@{viewModel.selectedProduct.rating}"
+            android:stepSize="0.5"
+            app:layout_constraintLeft_toRightOf="@id/profilePic"
+            app:layout_constraintTop_toBottomOf="@id/tPrice"
+            tools:rating="3.4" />
+
+        <TextView
+            android:id="@+id/tDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:maxLines="1"
+            android:text="@{viewModel.getDate()}"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ratingBar"
+            tools:text="31.12.2015" />
+
+        <TextView
+            android:id="@+id/tShortDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@{viewModel.selectedProduct.description}"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profilePic"
+            tools:text="Short Text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/vormerken"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tShortDesc" />
+
+        <TextView
+            android:id="@+id/tLongDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@{viewModel.selectedProduct.longDescription}"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bFavorite"
+            tools:text="@string/dummy_desc_text" />
+
+        <TextView
+            android:id="@+id/tFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/footer_text"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tLongDesc"
+            tools:text="@string/footer_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

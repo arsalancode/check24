@@ -1,6 +1,8 @@
 package com.check24.app.networking.networking.repo.model
 
 import android.os.Parcelable
+import com.check24.app.core.utils.toDate
+import com.check24.app.core.utils.toPrice
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 

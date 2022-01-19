@@ -5,14 +5,16 @@ import androidx.lifecycle.*
 import com.check24.app.base.NoInternetBaseViewModel
 import com.check24.app.core.utils.flow.Event
 import com.check24.app.core.utils.flow.loadingEventFlow
+import com.check24.app.core.utils.toDate
+import com.check24.app.core.utils.toPrice
 import com.check24.app.home.model.QueryModel
 import com.check24.app.home.model.UiStates
 import com.check24.app.home.uimodels.ProductUiModel
 import com.check24.app.networking.networking.repo.SearchRepository
 import com.check24.app.networking.networking.repo.model.Header
+import com.check24.app.networking.networking.repo.model.Price
 import com.check24.app.networking.networking.repo.model.Product
 import com.check24.app.networking.networking.repo.model.RepoModel
-import com.check24.app.networking.networking.repo.model.SearchResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -31,6 +33,10 @@ class HomeViewModel @Inject constructor(
     var currentPage = 1
     var loadMoreFlag = false
     val uiStates = MutableLiveData(UiStates.WELCOME)
+    val onClick = MutableLiveData<Boolean>()
+
+//    var selectedProduct : Product = getProduct()
+    var selectedProduct : MutableLiveData<Product> = MutableLiveData()
 
     var header = MutableLiveData<Header>()
     var filters: List<String> = listOf()
@@ -46,9 +52,6 @@ class HomeViewModel @Inject constructor(
         .distinctUntilChanged()
 
     init {
-        header = MutableLiveData()
-//        header.postValue(Header("", ""))
-
         repoModelList = mutableListOf()
         repoUiModelList.postValue(listOf())
 
@@ -109,11 +112,22 @@ class HomeViewModel @Inject constructor(
                 val uiModelList = repoModelList.map {
                     ProductUiModel(
                         it,
-                        null,
                         if (it.available) R.layout.product_row else R.layout.product_row_inverse
-                    )
+                    ) {
+                        // click listener
+                        Log.i(TAG, "Selected Product: $it")
+                        //selectedProduct.postValue(it)
+                        //selectedProduct = it
+                        //selectedProduct.postValue(it)
+                        selectedProduct.value = it
+
+                        // now move to detailed fragment
+                        onClick.postValue(true)
+                    }
                 }
                 repoUiModelList.postValue(uiModelList)
+                //selectedProduct = repoModelList[0]// dummy
+
 
                 uiStates.value = if (uiModelList.isEmpty()) UiStates.NO_DATA
                 else UiStates.SHOW_DATA
@@ -136,5 +150,38 @@ class HomeViewModel @Inject constructor(
 
         }
     }
+
+//    fun getDate(): String = selectedProduct.value!!.releaseDate.toDate()
+//    fun getPrice() : String = selectedProduct.value!!.price.value.toPrice(selectedProduct.value!!.price.currency)
+
+    fun getDate(): String {
+
+        if ( selectedProduct.value != null ){
+            return selectedProduct.value!!.releaseDate.toDate()
+        }
+
+        return ""
+    }
+
+    fun getPrice() : String {
+
+        if ( selectedProduct.value == null )
+            return ""
+
+        return selectedProduct.value!!.price.value.toPrice(selectedProduct.value!!.price.currency)
+    }
+
+
+    private fun getProduct() = Product(
+        0,
+        "test",
+        "---",
+        1459629605,
+        "short desc",
+        "long desc",
+        3.4F,
+        Price(0F, "EUR"),
+        false
+    )
 
 }

@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.check24.app.base.BaseFragment
@@ -73,6 +74,15 @@ class HomeFragment : BaseFragment() {
         vm.repoUiModelList.observe(viewLifecycleOwner, {
             linearLayoutManager.onRestoreInstanceState(recyclerRepoState)
         })
+
+        vm.onClick.observe(viewLifecycleOwner, {
+            if (it){
+                // Load next fragment
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+                findNavController().navigate(action)
+            }
+        })
+
 
         vm.searchRepos("newText")
     }

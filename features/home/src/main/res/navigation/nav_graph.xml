@@ -3,12 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragement">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/homeFragement"
+        android:id="@+id/homeFragment"
         android:name="com.check24.app.home.ui.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.check24.app.home.ui.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/detail_fragment" />
 
 </navigation>
