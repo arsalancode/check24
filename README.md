@@ -1,23 +1,7 @@
 # Check24 products
 
 ## App details:
-* The application contain one screen with a search field and list of repositories.
-* After the user inputs, the search query in the text field application query https://api.github.com/search/repositories for a list of
-  repositories. API details [Search GitHub Docs](https://docs.github.com/en/rest/reference/search)
-* Search request result contain 30 items and support pagination.
-* List item contains repository info:
-    - Owner avatar image
-    - Owner name
-    - Repository name
-    - Repository title
-    - Repository description
-    - Repository URL
-
-* The application support phone and tablet
-* The application support portrait and landscape layout
-* The app obfuscated with R8
-
-<img src="screenshots/home_welcome.png" alt="Welcome screen" width="200"/> <img src="screenshots/home_repos_list.png" alt="Github repositories list" width="200"/>
+App to show products
 
 ## Tech Stack
 1. kotlin, kotlin-coroutines
