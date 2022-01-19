@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.repos.home">
+    package="com.check24.app.home">
 
     <application
         android:allowBackup="true"

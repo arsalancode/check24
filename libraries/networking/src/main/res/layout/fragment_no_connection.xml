@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.repos.networking.ui.NoConnectionViewModel" />
+            type="com.check24.app.networking.ui.NoConnectionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNoConnectionTitle" />
 
-            <com.github.repos.core.customviews.LoadingButton
+            <com.check24.app.core.customviews.LoadingButton
                 android:id="@+id/bvNoConnectionRetry"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"

@@ -9,7 +9,7 @@
 
         <variable
             name="UiState"
-            type="com.github.repos.home.model.UiStates" />
+            type="com.check24.app.home.model.UiStates" />
 
         <variable
             name="lfo"
@@ -17,7 +17,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.repos.home.HomeViewModel" />
+            type="com.check24.app.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

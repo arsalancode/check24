@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.repos.splash">
+    package="com.check24.app.splash">
     
-<!--    <application android:name="com.github.repos.core.MyApp" />-->
 
 </manifest>

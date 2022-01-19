@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.repos.splash.SplashViewModel" />
+            type="com.check24.app.splash.SplashViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

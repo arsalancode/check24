@@ -1,4 +1,4 @@
-# Github Search Repositories
+# Check24 products
 
 ## App details:
 * The application contain one screen with a search field and list of repositories.

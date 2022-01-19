@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.repos.example.SimpleDataBoundText" />
+            type="com.check24.app.example.SimpleDataBoundText" />
 
         <variable
             name="lfo"

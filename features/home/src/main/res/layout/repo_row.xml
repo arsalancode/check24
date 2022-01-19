@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.repos.home.uimodels.RepoUiModel" />
+            type="com.check24.app.home.uimodels.RepoUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
